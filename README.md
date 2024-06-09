@@ -25,15 +25,19 @@ There are 3 functions available for use:
 All of them rely on each other. `draw_segment` calls `koch`, and `draw_flake` calls `draw_segment`, thus calling `koch`
 <br>
 
+There are three avilable colour-modes:
+- `<mode 0>` : basic white colouring
+- `<mode 1>` : grayscale-based colouring, depending on the turtle's current direction
+- `<mode 2>` : (a weird) HSV-based colouring, much like `<mode 1>`, just HSV instead of grayscale
 ### `koch`
 
 \>>> SYNTAX:
 ```python
-koch(stage, length)
+koch(stage, length, colour=0)
 ```
 <br>
 
-`koch` is the most fundamental of the three functions. It implements recursion to draw a segment (think of a line of a stage-0 flake - an equilateral triangle) of the (total horizontal) length `length` pixels, and levels of recursion equal to `stage`. <br>
+`koch` is the most fundamental of the three functions. It implements recursion to draw a segment (think of a line of a stage-0 flake - an equilateral triangle) of the (total horizontal) length `length` pixels, and levels of recursion equal to `stage`, with the colour-mode `colour`, which defaults to `0` <br>
 
 During the recursion step, the `length` passed to the function is divided by 3 and passed to another call of `koch` for generating the flake of stage `stage-1`. In some cases, the new `length` passed might be a value less than 1, which will end up doing nothing. This prints a warning to the console. <br>
 
@@ -44,11 +48,11 @@ This might be desired in some cases, so a mere warning is printed, rather than a
 
 \>>> SYNTAX:
 ```python
-draw_segment(stage, length, align=False, fast=False)
+draw_segment(stage, length, align=False, fast=False, colour=0)
 ```
 <br>
 
-`draw_segment` exists to enable some initialization before handing it over to `koch` to display the actual segment. `align` and `fast` are arguments that are optional to pass, and have default values of `False`. <br>
+`draw_segment` exists to enable some initialization before handing it over to `koch` to display the actual segment. `align` and `fast` are arguments that are optional to pass, and have default values of `False`. `colour` refers to the same thing as it did in `koch` <br>
 
 If the `align` parameter is set to `True`, the displayed segment is "horizontally symmetric about the turtle's current position", horizontal here referring to the direction that the turtle points in. For example, if `turtle.home()` is called to reset the turtle's position and orientation, and then `draw_segment` is called with `align=True`, the segment generated is symmetrical about the "y-axis". After the alignment, the turtle's position is reverted to where it was before `draw_segment`'s call. <br>
 
@@ -59,7 +63,7 @@ If the `fast` parameter is set to `True`, the turtle's tracer is turned off duri
 
 \>>> SYNTAX:
 ```python
-draw_flake(stage, length, align=False, fast=False)
+draw_flake(stage, length, align=False, fast=False, colour=0)
 ```
 <br>
 
@@ -87,3 +91,16 @@ If `align` is set to `True`, the turtle's current position will be the centroid 
 
 ![Stage-6 snowflake](https://github.com/rajdeep-314/koch_snowflake/assets/160480035/7cd3d8d6-7861-4175-82e4-62e953522ea9)
 <p align="center"> Stage-6 snowflake generated using draw_flake </p> <br>
+
+### New outputs (after adding colour-modes)
+
+<br>
+
+![image](https://github.com/rajdeep-314/koch_snowflake/assets/160480035/e899b4f0-063c-478d-a391-300796090efe)
+<p align="center"> Stage-3 snowflake with colour-mode 1 </p> <br>
+
+![image](https://github.com/rajdeep-314/koch_snowflake/assets/160480035/0e68c9cc-2224-4e4d-ad50-f6468f8a0c55)
+<p align="center"> Stage-3 snowflake with colour-mode 2 </p> <br>
+
+![image](https://github.com/rajdeep-314/koch_snowflake/assets/160480035/187e7056-a4c4-464c-a44f-5d0e08ce8616)
+<p align="center"> Stage-4 snowflake with colour-mode 2 </p> <br>
