@@ -14,7 +14,6 @@ turtle.bgcolor('black')
 turtle.color('white')
 turtle.hideturtle()
 turtle.speed(10)
-
 turtle.width(2)
 
 # Draws a "segment" of the snowflake
