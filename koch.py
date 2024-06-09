@@ -22,13 +22,13 @@ turtle.width(2)
 def koch(stage, length, colour=0):
     # Base case
     if stage == 0:
-        if color == 0:
-            turtle.color(0, 0, 0)
+        if color == 0:        # Default white colour
+            turtle.color(1, 1, 1)
         elif colour == 1:     # Grayscale colouring
             k_factor = 0.1
             colour_ = k_factor + (1-k_factor)*abs(turtle.heading() - 180)/180
             turtle.color(*[colour_]*3)
-        elif colour == 2:   # HSV-based colouring
+        elif colour == 2:     # HSV-based colouring
             k_factor = 0.1
             hsv_colour = k_factor + (1-k_factor)*abs(turtle.heading() - 180)/180
             rgb_colour = hsv_to_rgb(hsv_colour, 1, 1)
